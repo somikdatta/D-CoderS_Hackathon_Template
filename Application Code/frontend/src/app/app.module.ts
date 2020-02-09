@@ -5,12 +5,13 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SignupComponent } from "./auth/signup/signup.component";
+import { ErrorComponent } from "./error/error.component";
 
 import { StudentSignupComponent } from "./auth/signup/student-signup/student-signup.component";
 import { TeacherSignupComponent } from "./auth/signup/teacher-signup/teacher-signup.component";
 import { HodSignupComponent } from "./auth/signup/hod-signup/hod-signup.component";
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatInputModule } from "@angular/material/input";
@@ -18,6 +19,9 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSelectModule } from "@angular/material/select";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatDialogModule } from "@angular/material/dialog";
+import { ErrorInterceptor } from "./error-interceptor";
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,9 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     SignupComponent,
     StudentSignupComponent,
     TeacherSignupComponent,
-    HodSignupComponent
+    HodSignupComponent,
+    ErrorComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +44,13 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     MatSelectModule,
     MatProgressSpinnerModule,
     HttpClientModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule {}

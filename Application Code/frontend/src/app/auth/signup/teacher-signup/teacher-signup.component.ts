@@ -3,6 +3,7 @@ import { environment } from "src/environments/environment";
 import { TeacherSignup } from "src/app/models/signup";
 import { HttpClient } from "@angular/common/http";
 import { NgForm } from "@angular/forms";
+import { AuthService } from "../../auth.service";
 
 @Component({
   selector: "app-teacher-signup",
@@ -14,7 +15,7 @@ export class TeacherSignupComponent implements OnInit {
   isLoading = false;
   singupPayload: TeacherSignup;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit() {}
 
@@ -31,15 +32,6 @@ export class TeacherSignupComponent implements OnInit {
       department: form.value.department,
       profession: 1
     };
-    this.http.post(this.SIGNUP_URL, this.singupPayload).subscribe(
-      res => {
-        console.log(res);
-        this.isLoading = false;
-      },
-      err => {
-        console.log(err);
-        this.isLoading = false;
-      }
-    );
+    this.authService.createTeacher(this.singupPayload);
   }
 }

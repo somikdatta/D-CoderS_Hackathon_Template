@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { environment } from "src/environments/environment";
-import { HttpClient } from "@angular/common/http";
 import { NgForm } from "@angular/forms";
 import { StudentSignup } from "src/app/models/signup";
+import { AuthService } from "../../auth.service";
 
 @Component({
   selector: "app-student-signup",
@@ -10,11 +9,10 @@ import { StudentSignup } from "src/app/models/signup";
   styleUrls: ["./student-signup.component.css"]
 })
 export class StudentSignupComponent implements OnInit {
-  SIGNUP_URL = environment.apiEndPoint + "user/signup";
   isLoading = false;
   singupPayload: StudentSignup;
 
-  constructor(private http: HttpClient) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {}
 
@@ -33,15 +31,6 @@ export class StudentSignupComponent implements OnInit {
       semester: form.value.semester,
       profession: 2
     };
-    this.http.post(this.SIGNUP_URL, this.singupPayload).subscribe(
-      res => {
-        console.log(res);
-        this.isLoading = false;
-      },
-      err => {
-        console.log(err);
-        this.isLoading = false;
-      }
-    );
+    this.authService.createStudent(this.singupPayload);
   }
 }
