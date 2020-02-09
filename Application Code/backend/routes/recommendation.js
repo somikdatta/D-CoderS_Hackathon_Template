@@ -45,7 +45,7 @@ router.get('/reviewed', checkAuth, checkprivilege.hod, (req, res) => {
 })
 
 router.get('/reviewedbyme', checkAuth, checkprivilege.teacher, (req, res) => {
-    Recommendation.find({ isreviewed: true, reviewedBy: req.userData.userId, department: req.userData.department }).then(rData => {
+    Recommendation.find({ isreviewed: true, reviewedBy: req.userData.userId, department: req.userData.department }).populate('acceptedBy').populate('rejectedBy').then(rData => {
         res.status(200).json({ message: "Reviewed LOR Requests", data: rData })
     }).catch((err) => {
         console.log(err);
