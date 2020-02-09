@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const userRoute = require('./routes/user');
+const path = require("path");
 
 const app = express();
 
@@ -13,6 +14,7 @@ mongoose.connect("mongodb+srv://beckysoren:" + process.env.MONGO_ATLAS_PASS + "@
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use("/files", express.static(path.join(__dirname, "/files")));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

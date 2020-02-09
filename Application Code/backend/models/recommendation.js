@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const recommendationSchema = mongoose.Schema({
     title: { type: String, required: true },
     content: { type: String },
-    filesPath: { type: String, required: true },
+    filesPath: { type: Array, required: true },
 
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     createdOn: { type: Date },
