@@ -8,6 +8,7 @@ import { environment } from "src/environments/environment";
 export class LorService {
   NEW_LOR_URL = environment.apiEndPoint + "recommendation/newlor";
   GET_OWN_LOR_URL = environment.apiEndPoint + "recommendation/mylors";
+  DELETE_LOR_URL = environment.apiEndPoint + "recommendation/deletelor";
 
   constructor(private http: HttpClient) {}
 
@@ -24,5 +25,10 @@ export class LorService {
 
   getMyLor() {
     return this.http.get(this.GET_OWN_LOR_URL);
+  }
+
+  deleteLor(id: string) {
+    const URL = this.DELETE_LOR_URL + `/${id}`;
+    return this.http.delete(URL);
   }
 }

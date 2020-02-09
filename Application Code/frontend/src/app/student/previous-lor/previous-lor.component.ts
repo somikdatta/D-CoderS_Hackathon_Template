@@ -10,7 +10,6 @@ import { MyLor } from "src/app/models/lor";
 })
 export class PreviousLorComponent implements OnInit {
   myLors: MyLor[];
-
   constructor(private lorService: LorService) {}
 
   ngOnInit() {
@@ -34,7 +33,29 @@ export class PreviousLorComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.myLors = res.data;
-        console.log(this.myLors);
+      });
+  }
+  deleteLor(id: string) {
+    this.lorService
+      .deleteLor(id)
+      .pipe(
+        map((myLorsData: any) => {
+          return {
+            data: myLorsData.data.map(data => {
+              return {
+                id: data._id,
+                filesPath: data.filesPath,
+                createdOn: data.createdOn,
+                title: data.title,
+                isreviewed: data.isreviewed,
+                isaccepted: data.isaccepted
+              };
+            })
+          };
+        })
+      )
+      .subscribe((res: any) => {
+        this.myLors = res.data;
       });
   }
 }

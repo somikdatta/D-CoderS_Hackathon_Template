@@ -31,6 +31,8 @@ import { AuthInterceptor } from "./auth/auth.interceptor";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { NewLorComponent } from "./student/new-lor/new-lor.component";
 import { PreviousLorComponent } from "./student/previous-lor/previous-lor.component";
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { PreviousLorComponent } from "./student/previous-lor/previous-lor.compon
     MatToolbarModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    MatStepperModule,
+    MatIconModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

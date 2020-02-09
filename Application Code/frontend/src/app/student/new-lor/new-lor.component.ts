@@ -27,6 +27,8 @@ export class NewLorComponent implements OnInit {
     this.isLoading = true;
     this.lorService.newLor(this.form.value.title, this.form.value.files);
     this.isLoading = false;
+    this.form.value.title = "";
+    this.form.value.files = "";
   }
   onFilePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files;
