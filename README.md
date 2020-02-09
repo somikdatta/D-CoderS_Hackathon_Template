@@ -17,7 +17,7 @@ A brief description of
 
 #### Architecture Diagram
 
-Affix an image of the flow diagram/architecture diagram of the solution
+![](https://imgur.com/a/duuc2hr?raw=true)
 
 #### Technical Description
 
