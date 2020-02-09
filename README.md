@@ -31,8 +31,8 @@ Node.js needs to be installed on your device.
 Navigate to backend folder run the command <npm i>
 Navigate to frontend folder, run the command <npm i>
 
-Run the backend with the command <npm start> / <nodemon server.js>
-Run the frontend with the command <ng serve -o>
+Run the backend with the command "npm start" or "nodemon server.js"
+Run the frontend with the command "ng serve -o"
 
 ### Team Members
 
