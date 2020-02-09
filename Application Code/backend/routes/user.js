@@ -44,13 +44,14 @@ router.post('/signup', (req, res, next) => {
                 department: req.body.department,
                 semester: req.body.semester
             },
-            authorization: req.body.profession || 2
+            authorization: req.body.profession
         });
         user.save().then(result => {
             res.status(201).json({
                 message: "Succesful signup"
             })
         }).catch((err) => {
+            console.log(err);
             res.status(401).json({
                 message: "User already exists"
             })
