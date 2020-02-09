@@ -16,7 +16,7 @@ router.get("/mylors", checkAuth, checkprivilege.student, (req, res) => {
 })
 
 router.get('/tobereviewed', checkAuth, checkprivilege.hod, (req, res) => {
-    Recommendation.find({ isreviewed: false }).then(tbrData => {
+    Recommendation.find({ isreviewed: false, department: req.userData.department }).then(tbrData => {
         res.status(200).json({ message: "LOR Requests to be reviewed", data: tbrData })
     }).catch((err) => {
         console.log(err);
