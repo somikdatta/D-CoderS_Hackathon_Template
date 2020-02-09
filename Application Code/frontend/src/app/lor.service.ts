@@ -16,6 +16,8 @@ export class LorService {
     environment.apiEndPoint + "recommendation/assignteacher";
   private TO_REVIEW_LOR_URL =
     environment.apiEndPoint + "recommendation/toreview";
+  private SUBMIT_REVIEW_URL =
+    environment.apiEndPoint + "recommendation/submitreview";
 
   constructor(private http: HttpClient) {}
 
@@ -54,5 +56,10 @@ export class LorService {
 
   toReview() {
     return this.http.get(this.TO_REVIEW_LOR_URL);
+  }
+
+  submitReview(id: string, review: string) {
+    const URL = this.SUBMIT_REVIEW_URL + `/${id}`;
+    return this.http.patch(URL, { review: review });
   }
 }

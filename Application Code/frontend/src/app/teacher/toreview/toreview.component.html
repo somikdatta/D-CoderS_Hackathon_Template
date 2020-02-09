@@ -8,7 +8,8 @@
       <mat-error *ngIf="review.invalid">Please enter a valid review</mat-error>
     </mat-form-field>
     <br>
-    <button mat-raised-button color="primary">Submit Review to HOD</button>
+    <button mat-raised-button color="primary" (click)="submitReview(request.id,review.value)">Submit Review to
+      HOD</button>
   </mat-card-content>
   <mat-card-actions>
     <ng-container *ngFor="let url of request.filesPath; let i=index">

@@ -14,6 +14,10 @@ export class ToreviewComponent implements OnInit {
   constructor(private lorService: LorService) {}
 
   ngOnInit() {
+    this.getToReview();
+  }
+
+  getToReview() {
     this.lorService
       .toReview()
       .pipe(
@@ -33,5 +37,11 @@ export class ToreviewComponent implements OnInit {
       .subscribe((res: any) => {
         this.tbrLors = res.data;
       });
+  }
+
+  submitReview(id: string, review: string) {
+    this.lorService.submitReview(id, review).subscribe(res => {
+      this.getToReview();
+    });
   }
 }
