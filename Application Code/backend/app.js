@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const userRoute = require('./routes/user');
+const recommendationRoute = require('./routes/recommendation');
 const path = require("path");
 
 const app = express();
@@ -31,5 +32,6 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/user", userRoute);
+app.use("/api/recommendation", recommendationRoute);
 
 module.exports = app;

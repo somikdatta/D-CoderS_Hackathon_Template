@@ -1,0 +1,21 @@
+<div class="center container">
+  <div class="container">
+    <h4 id="headline">Request a New LOR or Check Previous Requests</h4>
+  </div>
+  <form [formGroup]="form" (submit)="onSaveFiles()" *ngIf="!isLoading">
+    <div>
+      <mat-form-field appearance="outline" color="primary">
+        <mat-label>Purpose</mat-label>
+        <input matInput formControlName="title" type="text" placeholder="Purpose">
+        <mat-error *ngIf="form.get('title').invalid">Please enter your purpose</mat-error>
+        <mat-hint>Purpose for LOR</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="left">
+      <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Files</button>
+      <input type="file" #filePicker accept=".png,.jpg,.jpeg,.pdf" (change)="onFilePicked($event)" multiple>
+    </div>
+    <button type="submit" mat-raised-button color="accent" *ngIf="!isLoading">Requesr LOR</button>
+    <mat-spinner diameter="35" color="primary" *ngIf="isLoading"></mat-spinner>
+  </form>
+</div>

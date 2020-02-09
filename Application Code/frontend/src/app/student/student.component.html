@@ -1,1 +1,12 @@
-<p>student works!</p>
+<mat-tab-group mat-align-tabs="center" mat-stretch-tabs>
+  <mat-tab label="Request New LOR">
+    <ng-template matTabContent>
+      <app-new-lor></app-new-lor>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Requests">
+    <ng-template matTabContent>
+      <app-previous-lor></app-previous-lor>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

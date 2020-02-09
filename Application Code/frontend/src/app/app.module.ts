@@ -10,7 +10,7 @@ import { ErrorComponent } from "./error/error.component";
 import { StudentSignupComponent } from "./auth/signup/student-signup/student-signup.component";
 import { TeacherSignupComponent } from "./auth/signup/teacher-signup/teacher-signup.component";
 import { HodSignupComponent } from "./auth/signup/hod-signup/hod-signup.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { MatTabsModule } from "@angular/material/tabs";
@@ -26,7 +26,9 @@ import { HodComponent } from "./hod/hod.component";
 import { StudentComponent } from "./student/student.component";
 import { TeacherComponent } from "./teacher/teacher.component";
 import { AuthInterceptor } from "./auth/auth.interceptor";
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { NewLorComponent } from "./student/new-lor/new-lor.component";
+import { PreviousLorComponent } from "./student/previous-lor/previous-lor.component";
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HodComponent,
     StudentComponent,
     TeacherComponent,
-    DashboardComponent
+    DashboardComponent,
+    NewLorComponent,
+    PreviousLorComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatProgressSpinnerModule,
     HttpClientModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

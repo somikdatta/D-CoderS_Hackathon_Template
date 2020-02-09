@@ -1,0 +1,85 @@
+input[type="file"] {
+  visibility: hidden;
+}
+
+.container {
+  margin: 1rem auto;
+}
+
+form {
+  border: 1px solid #3f51b5;
+  border-radius: 4px;
+  width: 50%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+mat-spinner {
+  margin: 0 auto;
+}
+
+#headline {
+  font-size: 2.5rem;
+  color: #3f51b5;
+}
+
+#tagline {
+  color: #aeaeae;
+}
+
+form div {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+  margin: 0 auto 1rem auto;
+}
+
+
+@media screen and (max-width: 996px) {
+  #headline {
+    font-size: 2rem;
+  }
+
+  form {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 831px) {
+  form {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 831px) {
+  form {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 616px) {
+  form {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 547px) {
+  form {
+    width: 95%;
+  }
+
+  #headline {
+    font-size: 1.5rem;
+  }
+
+  .flex {
+    display: block;
+  }
+
+  .margin-left {
+    margin-left: 0;
+  }
+
+}
