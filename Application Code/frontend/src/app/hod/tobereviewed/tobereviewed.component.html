@@ -4,6 +4,19 @@
     <ng-container *ngFor="let url of request.filesPath; let i=index">
       <a mat-stroked-button color="primary" href="{{url}}" target="_blank">Attachment {{i+1}}</a>
     </ng-container>
-    <button mat-stroked-button color="primary">Assign Teacher</button>
+
+  </mat-card-actions>
+  <mat-card-actions>
+    <mat-form-field appearance="outline" color="primary">
+      <mat-label>Teachers </mat-label>
+      <mat-select placeholder="Teachers" name="teacher" required #teacher="ngModel" ngModel required>
+        <ng-container *ngFor="let teacher of teachers">
+          <mat-option value="{{teacher.id}}">{{teacher.firstname}} {{teacher.lastname}}</mat-option>
+        </ng-container>
+      </mat-select>
+      <mat-error *ngIf="teacher.invalid">Please select a department</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="assignTeacher(request.id,teacher.value)">Assign Teacher for
+      Review</button>
   </mat-card-actions>
 </mat-card>

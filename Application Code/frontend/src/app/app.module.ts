@@ -36,6 +36,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { TobereviewedComponent } from './hod/tobereviewed/tobereviewed.component';
 import { FinalevaluationComponent } from './hod/finalevaluation/finalevaluation.component';
 import { ClosedrequestsComponent } from './hod/closedrequests/closedrequests.component';
+import { ToreviewComponent } from './teacher/toreview/toreview.component';
+import { ReviewedlorComponent } from './teacher/reviewedlor/reviewedlor.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { ClosedrequestsComponent } from './hod/closedrequests/closedrequests.com
     PreviousLorComponent,
     TobereviewedComponent,
     FinalevaluationComponent,
-    ClosedrequestsComponent
+    ClosedrequestsComponent,
+    ToreviewComponent,
+    ReviewedlorComponent
   ],
   imports: [
     BrowserModule,

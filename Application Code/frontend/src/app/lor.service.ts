@@ -6,11 +6,16 @@ import { environment } from "src/environments/environment";
   providedIn: "root"
 })
 export class LorService {
-  NEW_LOR_URL = environment.apiEndPoint + "recommendation/newlor";
-  GET_OWN_LOR_URL = environment.apiEndPoint + "recommendation/mylors";
-  DELETE_LOR_URL = environment.apiEndPoint + "recommendation/deletelor";
-  TOBEREVIEWED_LOR_URL =
+  private NEW_LOR_URL = environment.apiEndPoint + "recommendation/newlor";
+  private GET_OWN_LOR_URL = environment.apiEndPoint + "recommendation/mylors";
+  private DELETE_LOR_URL = environment.apiEndPoint + "recommendation/deletelor";
+  private TOBEREVIEWED_LOR_URL =
     environment.apiEndPoint + "recommendation/tobereviewed";
+  private TEACHERS_URL = environment.apiEndPoint + "user/teachers";
+  private ASSIGN_TEACHER_URL =
+    environment.apiEndPoint + "recommendation/assignteacher";
+  private TO_REVIEW_LOR_URL =
+    environment.apiEndPoint + "recommendation/toreview";
 
   constructor(private http: HttpClient) {}
 
@@ -36,5 +41,18 @@ export class LorService {
 
   getToBeReviewed() {
     return this.http.get(this.TOBEREVIEWED_LOR_URL);
+  }
+
+  getTeachers() {
+    return this.http.get(this.TEACHERS_URL);
+  }
+
+  assignTeacher(id: string, teacher: string) {
+    const URL = this.ASSIGN_TEACHER_URL + `/${id}`;
+    return this.http.patch(URL, { teacher: teacher });
+  }
+
+  toReview() {
+    return this.http.get(this.TO_REVIEW_LOR_URL);
   }
 }

@@ -1,0 +1,18 @@
+<mat-card *ngFor="let request of tbrLors">
+  <mat-card-title>{{request.title | titlecase}}</mat-card-title>
+  <mat-card-content>
+    <mat-form-field appearance="outline" color="primary">
+      <mat-label>Review</mat-label>
+      <textarea matInput placeholder="Review" type="text" name="review" required #review="ngModel" ngModel
+        required></textarea>
+      <mat-error *ngIf="review.invalid">Please enter a valid review</mat-error>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary">Submit Review to HOD</button>
+  </mat-card-content>
+  <mat-card-actions>
+    <ng-container *ngFor="let url of request.filesPath; let i=index">
+      <a mat-stroked-button color="primary" href="{{url}}" target="_blank">Attachment {{i+1}}</a>
+    </ng-container>
+  </mat-card-actions>
+</mat-card>
