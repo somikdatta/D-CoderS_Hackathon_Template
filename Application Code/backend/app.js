@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const userRoute = require('./routes/user');
 
 const app = express();
 
@@ -24,5 +25,7 @@ app.get("/", (req, res) => {
         message: "Backend for LOR"
     })
 })
+
+app.use("/api/user", userRoute);
 
 module.exports = app;
