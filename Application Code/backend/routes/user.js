@@ -2,7 +2,8 @@ const express = require("express");
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-// const checkAuth = require('../middleware/check-auth');
+const checkAuth = require('../middleware/check-auth');
+const checkprivilege = require('../middleware/check-privilege');
 
 const router = express.Router();
 
@@ -24,6 +25,14 @@ router.get('/', (req, res, next) => {
 //         })
 // })
 
+router.get('/teachers', checkAuth, checkprivilege.hod, (req, res) => {
+    User.find({ department: req.userData.department, authorization: 1 }).select({ uniqueid: 1 }).select({ name: 1 }).then((userData) => {
+        res.status(200).json({ message: "Teachers fetched successfully", data: userData });
+    }).catch((err) => {
+        console.log(err);
+        res.status(400).json({ message: "Teachers cannot be fetched" });
+    })
+})
 
 router.post('/signup', (req, res, next) => {
     if ((req.body.password).length < 8) {
@@ -39,11 +48,9 @@ router.post('/signup', (req, res, next) => {
             },
             uniqueid: req.body.uniqueid,
             password: hash,
-            career: {
-                course: req.body.course,
-                department: req.body.department,
-                semester: req.body.semester
-            },
+            course: req.body.course,
+            department: req.body.department,
+            semester: req.body.semester,
             authorization: req.body.profession
         });
         user.save().then(result => {
@@ -85,7 +92,7 @@ router.post('/login', (req, res) => {
             {
                 userId: fetchedUser._id,
                 authorization: fetchedUser.authorization,
-                department: fetchedUser.career.department
+                department: fetchedUser.department
             },
             process.env.JWT_KEY,
             { expiresIn: '1d' }

@@ -9,6 +9,7 @@ const recommendationSchema = mongoose.Schema({
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     createdOn: { type: Date },
 
+    review: { type: String },
     reviewedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     isreviewed: { type: Boolean },
     reviewedOn: { type: Date },
@@ -19,7 +20,10 @@ const recommendationSchema = mongoose.Schema({
 
     rejectedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     isrejected: { type: Boolean },
-    rejectedOn: { type: Date }
+    rejectedOn: { type: Date },
+
+    isassigned: { type: Boolean },
+    assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 
 });
 

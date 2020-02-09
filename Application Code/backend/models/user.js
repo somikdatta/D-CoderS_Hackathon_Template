@@ -16,11 +16,9 @@ const userSchema = mongoose.Schema({
     uniqueid: { type: Number, required: true, unique: true },
     password: { type: String, required: true, minlength: 8 },
     authorization: { type: Number, default: 2 },
-    career: {
-        course: { type: Number },
-        department: { type: Number },
-        semester: { type: Number },
-    },
+    course: { type: Number },
+    department: { type: Number },
+    semester: { type: Number },
 });
 
 userSchema.plugin(uniqueValidator);

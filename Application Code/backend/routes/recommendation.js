@@ -15,14 +15,36 @@ router.get("/mylors", checkAuth, checkprivilege.student, (req, res) => {
     })
 })
 
+
+
 router.get('/tobereviewed', checkAuth, checkprivilege.hod, (req, res) => {
-    Recommendation.find({ isreviewed: false, department: req.userData.department }).then(tbrData => {
+    Recommendation.find({ isassigned: false, department: req.userData.department }).then(tbrData => {
         res.status(200).json({ message: "LOR Requests to be reviewed", data: tbrData })
     }).catch((err) => {
         console.log(err);
         res.status(400).json({ message: "Cannot fetch your LOR Requests" });
     })
 })
+
+router.get('/toreview', checkAuth, checkprivilege.teacher, (req, res) => {
+    Recommendation.find({ isassigned: true, isreviewed: false, department: req.userData.department, assignedTo: req.userData.userId }).then(tbrData => {
+        res.status(200).json({ message: "LOR Requests to be reviewed", data: tbrData })
+    }).catch((err) => {
+        console.log(err);
+        res.status(400).json({ message: "Cannot fetch your LOR Requests" });
+    })
+})
+
+router.patch('/assignteacher/:id', checkAuth, checkprivilege.hod, (req, res) => {
+    const id = req.params.id;
+    Recommendation.updateOne({ _id: id }, { $set: { assignedTo: req.body.teacher, isassigned: true } }).then(() => {
+        return res.status(200).json({ message: "Teacher assigned successfully" });
+    }).catch(err => {
+        console.log(err);
+        return res.status(401).json({ message: "Cannot assign teacher" });
+    })
+})
+
 
 router.post('/newlor', checkAuth, checkprivilege.student, extractFile, (req, res) => {
     const url = req.protocol + '://' + req.get("host");
@@ -39,6 +61,7 @@ router.post('/newlor', checkAuth, checkprivilege.student, extractFile, (req, res
         filesPath: fileArr,
         isreviewed: false,
         isaccepted: false,
+        isassigned: false
     })
     recommendation.save().then((saveData) => {
         res.status(200).json({ message: 'LOR requested' });
