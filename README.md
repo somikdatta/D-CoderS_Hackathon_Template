@@ -1,19 +1,19 @@
 ## 58 - Letter of Recommendation Web App
 
-The participants are required to fork this repository and create a public Github repository under their own username (Single repository per team). The following created sections in this README.md need to be duly filled, highlighting the denoted points for the solution/implementation. Please feel free to create further sub-sections in this markdown, the idea is to understand the gist of the components in a singular document.
-
 ### Project Overview
 
----
+Problem: Getting a letter of recommendation can be tedious work for both the student and the teachers.
+Automation of this process can make life easier for both the students and teachers.
 
-A brief description of
-
-- What problem did the team try to solve
-- What is the proposed solution
+Solution: Online web portal for requesting and receiving a letter of recommendation
 
 ### Solution Description
 
----
+There are dashboards for:
+
+1. HODs - They can forward a request for review to teachers, accept or reject reviewed requests
+2. Teachers - They can review the request and make informed suggestions.
+3. Students - They can request a LOR
 
 #### Architecture Diagram
 
@@ -21,11 +21,9 @@ Affix an image of the flow diagram/architecture diagram of the solution
 
 #### Technical Description
 
-An overview of
-
-- What technologies/versions were used
-- Setup/Installations required to run the solution
-- Instructions to run the submitted code
+Front-End: Angular
+Back-End: Node.js (Express.js)
+Database: MongoDb
 
 ### Team Members
 
