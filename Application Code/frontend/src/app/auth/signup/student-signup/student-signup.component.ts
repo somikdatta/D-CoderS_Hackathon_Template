@@ -10,7 +10,7 @@ import { StudentSignup } from "src/app/models/signup";
   styleUrls: ["./student-signup.component.css"]
 })
 export class StudentSignupComponent implements OnInit {
-  SIGNUP_URL = environment.apiEndPoint + "signup";
+  SIGNUP_URL = environment.apiEndPoint + "user/signup";
   isLoading = false;
   singupPayload: StudentSignup;
 
@@ -22,6 +22,7 @@ export class StudentSignupComponent implements OnInit {
     if (form.invalid) {
       return;
     }
+    this.isLoading = true;
     this.singupPayload = {
       firstname: form.value.fname,
       lastname: form.value.lname,
@@ -35,9 +36,11 @@ export class StudentSignupComponent implements OnInit {
     this.http.post(this.SIGNUP_URL, this.singupPayload).subscribe(
       res => {
         console.log(res);
+        this.isLoading = false;
       },
       err => {
         console.log(err);
+        this.isLoading = false;
       }
     );
   }

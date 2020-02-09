@@ -10,6 +10,10 @@ form {
   padding: 2rem;
 }
 
+mat-spinner {
+  margin: 0 auto;
+}
+
 #headline {
   font-size: 3rem;
   color: #3f51b5;

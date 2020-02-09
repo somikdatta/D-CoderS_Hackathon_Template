@@ -43,14 +43,14 @@
       <mat-form-field appearance="outline" color="accent">
         <mat-label>Department</mat-label>
         <mat-select placeholder="Department" name="department" required #department="ngModel" ngModel>
-          <mat-option value="cse">CSE</mat-option>
-          <mat-option value="ece">ECE</mat-option>
-          <mat-option value="ee">EE</mat-option>
-          <mat-option value="it">IT</mat-option>
-          <mat-option value="me">ME</mat-option>
-          <mat-option value="ce">CE</mat-option>
-          <mat-option value="ca">CA</mat-option>
-          <mat-option value="ba">BA</mat-option>
+          <mat-option value="1">CSE</mat-option>
+          <mat-option value="2">ECE</mat-option>
+          <mat-option value="3">EE</mat-option>
+          <mat-option value="4">IT</mat-option>
+          <mat-option value="5">ME</mat-option>
+          <mat-option value="6">CE</mat-option>
+          <mat-option value="7">CA</mat-option>
+          <mat-option value="8">BA</mat-option>
         </mat-select>
         <mat-error *ngIf="department.invalid">Please select a department</mat-error>
       </mat-form-field>

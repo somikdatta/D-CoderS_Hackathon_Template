@@ -10,7 +10,7 @@ import { NgForm } from "@angular/forms";
   styleUrls: ["./hod-signup.component.css"]
 })
 export class HodSignupComponent implements OnInit {
-  SIGNUP_URL = environment.apiEndPoint + "signup";
+  SIGNUP_URL = environment.apiEndPoint + "user/signup";
   isLoading = false;
   singupPayload: TeacherSignup;
 
@@ -22,6 +22,7 @@ export class HodSignupComponent implements OnInit {
     if (form.invalid) {
       return;
     }
+    this.isLoading = true;
     this.singupPayload = {
       firstname: form.value.fname,
       lastname: form.value.lname,
@@ -33,9 +34,11 @@ export class HodSignupComponent implements OnInit {
     this.http.post(this.SIGNUP_URL, this.singupPayload).subscribe(
       res => {
         console.log(res);
+        this.isLoading = false;
       },
       err => {
         console.log(err);
+        this.isLoading = false;
       }
     );
   }
