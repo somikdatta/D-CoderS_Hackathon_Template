@@ -4,6 +4,7 @@ const recommendationSchema = mongoose.Schema({
     title: { type: String, required: true },
     content: { type: String },
     filesPath: { type: Array, required: true },
+    department: { type: Number, required: true },
 
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     createdOn: { type: Date },
@@ -19,7 +20,6 @@ const recommendationSchema = mongoose.Schema({
     rejectedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     isrejected: { type: Boolean },
     rejectedOn: { type: Date }
-
 
 });
 

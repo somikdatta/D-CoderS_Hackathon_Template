@@ -84,7 +84,8 @@ router.post('/login', (req, res) => {
         const token = jwt.sign(
             {
                 userId: fetchedUser._id,
-                authorization: fetchedUser.authorization
+                authorization: fetchedUser.authorization,
+                department: fetchedUser.career.department
             },
             process.env.JWT_KEY,
             { expiresIn: '1d' }

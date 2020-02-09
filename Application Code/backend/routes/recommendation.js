@@ -34,10 +34,11 @@ router.post('/newlor', checkAuth, checkprivilege.student, extractFile, (req, res
         title: req.body.title,
         content: req.body.content,
         createdBy: req.userData.userId,
+        department: req.userData.department,
         createdOn: Date.now(),
         filesPath: fileArr,
         isreviewed: false,
-        isaccepted: false
+        isaccepted: false,
     })
     recommendation.save().then((saveData) => {
         res.status(200).json({ message: 'LOR requested' });
