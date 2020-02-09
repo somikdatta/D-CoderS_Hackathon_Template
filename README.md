@@ -17,7 +17,7 @@ There are dashboards for:
 
 #### Architecture Diagram
 
-Affix an image of the flow diagram/architecture diagram of the solution
+![Flow Diagram](https://i.imgur.com/5LEL5dT.png)
 
 #### Technical Description
 
