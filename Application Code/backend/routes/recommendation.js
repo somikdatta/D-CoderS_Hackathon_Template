@@ -36,7 +36,7 @@ router.get('/toreview', checkAuth, checkprivilege.teacher, (req, res) => {
 })
 
 router.get('/reviewed', checkAuth, checkprivilege.hod, (req, res) => {
-    Recommendation.find({ isreviewed: true, department: req.userData.department }).populate('reviewedBy').then(rData => {
+    Recommendation.find({ isreviewed: true, isaccepted: false, isrejected: false, department: req.userData.department }).populate('reviewedBy').then(rData => {
         res.status(200).json({ message: "Reviewed LOR Requests", data: rData })
     }).catch((err) => {
         console.log(err);
@@ -44,13 +44,58 @@ router.get('/reviewed', checkAuth, checkprivilege.hod, (req, res) => {
     })
 })
 
+router.get('/reviewedbyme', checkAuth, checkprivilege.teacher, (req, res) => {
+    Recommendation.find({ isreviewed: true, reviewedBy: req.userData.userId, department: req.userData.department }).then(rData => {
+        res.status(200).json({ message: "Reviewed LOR Requests", data: rData })
+    }).catch((err) => {
+        console.log(err);
+        res.status(400).json({ message: "Cannot fetch your LOR Requests" });
+    })
+})
+
+router.get('/acceptedbyme', checkAuth, checkprivilege.hod, (req, res) => {
+    Recommendation.find({ acceptedBy: req.userData.userId }).populate('reviewedBy').then(rData => {
+        res.status(200).json({ message: "Evaluated LOR Requests", data: rData })
+    }).catch((err) => {
+        console.log(err);
+        res.status(400).json({ message: "Cannot fetch your LOR Requests" });
+    })
+})
+
+router.get('/rejectedbyme', checkAuth, checkprivilege.hod, (req, res) => {
+    Recommendation.find({ rejectedBy: req.userData.userId }).populate('reviewedBy').then(rData => {
+        res.status(200).json({ message: "Evaluated LOR Requests", data: rData })
+    }).catch((err) => {
+        console.log(err);
+        res.status(400).json({ message: "Cannot fetch your LOR Requests" });
+    })
+})
 router.patch('/submitreview/:id', checkAuth, checkprivilege.teacher, (req, res) => {
     const id = req.params.id;
-    Recommendation.updateOne({ _id: id }, { $set: { isreviewed: true, reviewedBy: req.userData.userId, review: req.body.review } }).then(() => {
+    Recommendation.updateOne({ _id: id }, { $set: { isreviewed: true, reviewedBy: req.userData.userId, reviewedOn: Date.now(), review: req.body.review, isaccepted: false, isrejected: false } }).then(() => {
         return res.status(200).json({ message: "Review Submitted successfully" });
     }).catch(err => {
         console.log(err);
         return res.status(401).json({ message: "Cannot submit review" });
+    })
+})
+
+router.patch('/acceptlor/:id', checkAuth, checkprivilege.hod, (req, res) => {
+    const id = req.params.id;
+    Recommendation.updateOne({ _id: id }, { $set: { isaccepted: true, acceptedOn: Date.now(), acceptedBy: req.userData.userId } }).then(() => {
+        return res.status(200).json({ message: "LOR Accepted successfully" });
+    }).catch(err => {
+        console.log(err);
+        return res.status(401).json({ message: "Cannot accept LOR" });
+    })
+})
+router.patch('/rejectlor/:id', checkAuth, checkprivilege.hod, (req, res) => {
+    const id = req.params.id;
+    Recommendation.updateOne({ _id: id }, { $set: { isrejected: true, rejectedOn: Date.now(), rejectedBy: req.userData.userId } }).then(() => {
+        return res.status(200).json({ message: "LOR Rejected successfully" });
+    }).catch(err => {
+        console.log(err);
+        return res.status(401).json({ message: "Cannot reject LOR" });
     })
 })
 
