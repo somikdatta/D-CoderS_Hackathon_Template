@@ -14,7 +14,12 @@ const recommendationSchema = mongoose.Schema({
 
     acceptedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     isaccepted: { type: Boolean },
-    acceptedOn: { type: Date }
+    acceptedOn: { type: Date },
+
+    rejectedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    isrejected: { type: Boolean },
+    rejectedOn: { type: Date }
+
 
 });
 

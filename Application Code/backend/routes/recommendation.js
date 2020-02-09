@@ -6,9 +6,18 @@ const extractFile = require('../middleware/file');
 
 const router = express.Router();
 
-router.get("/mylors", checkAuth, (req, res) => {
-    Recommendation.find({ createdBy: req.userData.userId, isreviewed: false }).select({ filesPath: 1 }).select({ title: 1 }).select({ createdOn: 1 }).then((lorData) => {
+router.get("/mylors", checkAuth, checkprivilege.student, (req, res) => {
+    Recommendation.find({ createdBy: req.userData.userId }).then((lorData) => {
         res.status(200).json({ message: "Your LOR Requests", data: lorData })
+    }).catch((err) => {
+        console.log(err);
+        res.status(400).json({ message: "Cannot fetch your LOR Requests" });
+    })
+})
+
+router.get('/tobereviewed', checkAuth, checkprivilege.hod, (req, res) => {
+    Recommendation.find({ isreviewed: false }).then(tbrData => {
+        res.status(200).json({ message: "LOR Requests to be reviewed", data: tbrData })
     }).catch((err) => {
         console.log(err);
         res.status(400).json({ message: "Cannot fetch your LOR Requests" });
@@ -19,7 +28,7 @@ router.post('/newlor', checkAuth, checkprivilege.student, extractFile, (req, res
     const url = req.protocol + '://' + req.get("host");
     let fileArr = [];
     for (let file of req.files) {
-        fileArr.push(url + "/files" + file.filename);
+        fileArr.push(url + "/files/" + file.filename);
     }
     const recommendation = new Recommendation({
         title: req.body.title,
@@ -27,7 +36,8 @@ router.post('/newlor', checkAuth, checkprivilege.student, extractFile, (req, res
         createdBy: req.userData.userId,
         createdOn: Date.now(),
         filesPath: fileArr,
-        isreviewed: false
+        isreviewed: false,
+        isaccepted: false
     })
     recommendation.save().then((saveData) => {
         res.status(200).json({ message: 'LOR requested' });
@@ -36,6 +46,21 @@ router.post('/newlor', checkAuth, checkprivilege.student, extractFile, (req, res
             console.log(err);
             res.status(400).json({ message: 'Cannot request a LOR at the moment' });
         })
+})
+
+router.delete('/deletelor/:id', checkAuth, checkprivilege.student, (req, res) => {
+    const id = req.params.id;
+    Recommendation.deleteOne({ _id: id }).then(() => {
+        Recommendation.find({ createdBy: req.userData.userId }).then((lorData) => {
+            res.status(200).json({ message: "LOR Request Deleted Successfully", data: lorData })
+        }).catch((err) => {
+            console.log(err);
+            res.status(400).json({ message: "Cannot fetch your LOR Requests" });
+        })
+    }).catch((err) => {
+        console.log(err);
+        res.status(400).json({ message: "Cannot delete LOR request" });
+    })
 })
 
 module.exports = router;
