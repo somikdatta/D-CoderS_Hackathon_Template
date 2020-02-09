@@ -27,7 +27,5 @@ Database: MongoDb
 
 ### Team Members
 
----
-
 1. Somik Datta : developersomik@gmail.com (backend/frontend)
 2. Rebecca Soren : sorenrebeccashruti@gmail.com (frontend)
