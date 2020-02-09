@@ -26,9 +26,7 @@
       <h4>Reviewed By</h4>
       {{request.reviewedBy.name.first}} {{request.reviewedBy.name.last}} bearing Employee ID
       {{request.reviewedBy.uniqueid}}
-      <h4>Status</h4>
-      <div *ngIf="request.isaccepted">LOR was accepted</div>
-      <div *ngIf="request.isrejected">LOR was rejected</div>
+
     </mat-card-content>
     <mat-card-actions>
       <ng-container *ngFor="let url of request.filesPath; let i=index">

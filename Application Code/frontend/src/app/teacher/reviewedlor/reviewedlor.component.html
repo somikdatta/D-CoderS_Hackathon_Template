@@ -1,1 +1,24 @@
-<p>reviewedlor works!</p>
+<mat-card *ngFor="let request of reviewedLors">
+  <mat-card-title>{{request.title | titlecase}}</mat-card-title>
+  <mat-card-content>
+    <h4>Review</h4>
+    {{request.review}}
+    <div *ngIf="request.isaccepted">
+      <h4>Status</h4>
+      <mat-icon color="primary">check_circle_outline</mat-icon>
+      LOR had been accepted on {{request.acceptedOn | date}} by {{request.acceptedBy.name.first}}
+      {{request.acceptedBy.name.last}}.
+    </div>
+    <div *ngIf="request.isrejected">
+      <h4>Status</h4>
+      <mat-icon color="accent">cancel</mat-icon>
+      LOR had been rejected on {{request.rejectedOn | date}} by {{request.rejectedBy.name.first}}
+      {{request.rejectedBy.name.last}}.
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <ng-container *ngFor="let url of request.filesPath; let i=index">
+      <a mat-stroked-button color="primary" href="{{url}}" target="_blank">Attachment {{i+1}}</a>
+    </ng-container>
+  </mat-card-actions>
+</mat-card>

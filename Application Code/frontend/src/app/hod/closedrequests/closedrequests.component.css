@@ -1,6 +1,6 @@
 .container {
   width: 50%;
-  margin: 1rem auto;
+  margin: 0 auto;
 }
 
 mat-card {
@@ -12,7 +12,7 @@ mat-spinner {
 }
 
 h3 {
-  margin: 0 auto 1rem auto;
+  margin: 1rem auto;
 }
 
 h4 {

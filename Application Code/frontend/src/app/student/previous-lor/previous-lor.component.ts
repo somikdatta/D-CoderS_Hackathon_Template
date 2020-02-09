@@ -32,7 +32,8 @@ export class PreviousLorComponent implements OnInit {
                 reviewedOn: data.reviewedOn,
                 acceptedOn: data.acceptedOn,
                 rejectedBy: data.rejectedBy,
-                rejectedOn: data.rejectedOn
+                rejectedOn: data.rejectedOn,
+                isrejected: data.isrejected
               };
             })
           };

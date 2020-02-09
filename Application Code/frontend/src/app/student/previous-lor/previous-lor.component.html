@@ -1,6 +1,7 @@
-<<ng-container *ngIf="!isLoading">
+<ng-container *ngIf="!isLoading">
 
   <mat-card *ngFor="let request of myLors">
+
     <mat-card-title>{{request.title | titlecase}}</mat-card-title>
     <mat-card-content>
       <div>
@@ -18,7 +19,7 @@
         {{request.acceptedBy.name.last}}.
       </div>
       <div *ngIf="request.isrejected">
-        <mat-icon color="accent">cancel</mat-icon>
+        <mat-icon color="warn">cancel</mat-icon>
         Your request has been rejected on {{request.rejectedOn | date}} by {{request.rejectedBy.name.first}}
         {{request.rejectedBy.name.last}}.
       </div>
@@ -32,4 +33,4 @@
     </mat-card-actions>
   </mat-card>
 
-  </ng-container>
+</ng-container>

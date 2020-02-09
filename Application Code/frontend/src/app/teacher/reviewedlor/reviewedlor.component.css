@@ -1,0 +1,41 @@
+mat-card {
+  width: 50%;
+  margin: 1rem auto;
+}
+
+@media screen and (max-width: 996px) {
+  mat-card {
+    width: 60%;
+  }
+}
+
+
+@media screen and (max-width: 831px) {
+  mat-card {
+    width: 70%;
+  }
+}
+
+#headline {
+  font-size: 2.5rem;
+  color: #3f51b5;
+  text-align: center;
+}
+
+@media screen and (max-width: 831px) {
+  mat-card {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 616px) {
+  mat-card {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 547px) {
+  mat-card {
+    width: 100%;
+  }
+}

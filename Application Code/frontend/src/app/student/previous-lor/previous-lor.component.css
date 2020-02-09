@@ -3,6 +3,13 @@ mat-card {
   margin: 1rem auto;
 }
 
+
+#headline {
+  font-size: 2.5rem;
+  color: #3f51b5;
+  text-align: center;
+}
+
 @media screen and (max-width: 996px) {
   mat-card {
     width: 60%;
