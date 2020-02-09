@@ -25,6 +25,15 @@ Front-End: Angular
 Back-End: Node.js (Express.js)
 Database: MongoDb
 
+#### Steps to locally run this application
+
+Node.js needs to be installed on your device.
+Navigate to backend folder run the command <npm i>
+Navigate to frontend folder, run the command <npm i>
+
+Run the backend with the command <npm start> / <nodemon server.js>
+Run the frontend with the command <ng serve -o>
+
 ### Team Members
 
 1. Somik Datta : developersomik@gmail.com (backend/frontend)
