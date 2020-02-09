@@ -1,1 +1,11 @@
-<p>previous-lor works!</p>
+<mat-card *ngFor="let request of myLors">
+  <mat-card-title>{{request.title | titlecase}}</mat-card-title>
+  <mat-card-content>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="margin-left">Attachments:</div> <br>
+    <ng-container *ngFor="let url of request.filesPath; let i=index">
+      <a mat-stroked-button href="{{url}}" target="_blank">Attachment {{i+1}}</a>
+    </ng-container>
+  </mat-card-actions>
+</mat-card>

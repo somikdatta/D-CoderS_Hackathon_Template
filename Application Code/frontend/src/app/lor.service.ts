@@ -23,8 +23,6 @@ export class LorService {
   }
 
   getMyLor() {
-    this.http.get(this.GET_OWN_LOR_URL).subscribe(res => {
-      console.log(res);
-    });
+    return this.http.get(this.GET_OWN_LOR_URL);
   }
 }

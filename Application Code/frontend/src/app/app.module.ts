@@ -20,6 +20,8 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatCardModule } from "@angular/material/card";
+
 import { ErrorInterceptor } from "./error-interceptor";
 import { LoginComponent } from "./auth/login/login.component";
 import { HodComponent } from "./hod/hod.component";
@@ -59,7 +61,8 @@ import { PreviousLorComponent } from "./student/previous-lor/previous-lor.compon
     HttpClientModule,
     MatToolbarModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
