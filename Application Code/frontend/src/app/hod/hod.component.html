@@ -1,1 +1,18 @@
-<p>hod works!</p>
+<mat-tab-group mat-align-tabs="center" mat-stretch-tabs>
+  <mat-tab label="To be sent to review">
+    <ng-template matTabContent>
+      <app-tobereviewed></app-tobereviewed>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Final Evaluation">
+    <ng-template matTabContent>
+      <app-finalevaluation></app-finalevaluation>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Closed Requests">
+    <ng-template matTabContent>
+      <app-closedrequests></app-closedrequests>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

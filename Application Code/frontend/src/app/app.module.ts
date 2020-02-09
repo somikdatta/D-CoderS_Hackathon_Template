@@ -33,6 +33,9 @@ import { NewLorComponent } from "./student/new-lor/new-lor.component";
 import { PreviousLorComponent } from "./student/previous-lor/previous-lor.component";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatIconModule } from "@angular/material/icon";
+import { TobereviewedComponent } from './hod/tobereviewed/tobereviewed.component';
+import { FinalevaluationComponent } from './hod/finalevaluation/finalevaluation.component';
+import { ClosedrequestsComponent } from './hod/closedrequests/closedrequests.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { MatIconModule } from "@angular/material/icon";
     TeacherComponent,
     DashboardComponent,
     NewLorComponent,
-    PreviousLorComponent
+    PreviousLorComponent,
+    TobereviewedComponent,
+    FinalevaluationComponent,
+    ClosedrequestsComponent
   ],
   imports: [
     BrowserModule,
