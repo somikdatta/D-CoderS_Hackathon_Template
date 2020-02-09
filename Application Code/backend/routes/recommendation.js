@@ -18,7 +18,7 @@ router.get("/mylors", checkAuth, checkprivilege.student, (req, res) => {
 
 
 router.get('/tobereviewed', checkAuth, checkprivilege.hod, (req, res) => {
-    Recommendation.find({ isassigned: false, department: req.userData.department }).then(tbrData => {
+    Recommendation.find({ isassigned: false, department: req.userData.department }).populate('createdBy').then(tbrData => {
         res.status(200).json({ message: "LOR Requests to be reviewed", data: tbrData })
     }).catch((err) => {
         console.log(err);
@@ -27,7 +27,7 @@ router.get('/tobereviewed', checkAuth, checkprivilege.hod, (req, res) => {
 })
 
 router.get('/toreview', checkAuth, checkprivilege.teacher, (req, res) => {
-    Recommendation.find({ isassigned: true, isreviewed: false, department: req.userData.department, assignedTo: req.userData.userId }).then(tbrData => {
+    Recommendation.find({ isassigned: true, isreviewed: false, department: req.userData.department, assignedTo: req.userData.userId }).populate('createdBy').then(tbrData => {
         res.status(200).json({ message: "LOR Requests to be reviewed", data: tbrData })
     }).catch((err) => {
         console.log(err);
@@ -36,7 +36,7 @@ router.get('/toreview', checkAuth, checkprivilege.teacher, (req, res) => {
 })
 
 router.get('/reviewed', checkAuth, checkprivilege.hod, (req, res) => {
-    Recommendation.find({ isreviewed: true, isaccepted: false, isrejected: false, department: req.userData.department }).populate('reviewedBy').then(rData => {
+    Recommendation.find({ isreviewed: true, isaccepted: false, isrejected: false, department: req.userData.department }).populate('reviewedBy').populate('createdBy').then(rData => {
         res.status(200).json({ message: "Reviewed LOR Requests", data: rData })
     }).catch((err) => {
         console.log(err);
@@ -45,7 +45,7 @@ router.get('/reviewed', checkAuth, checkprivilege.hod, (req, res) => {
 })
 
 router.get('/reviewedbyme', checkAuth, checkprivilege.teacher, (req, res) => {
-    Recommendation.find({ isreviewed: true, reviewedBy: req.userData.userId, department: req.userData.department }).populate('acceptedBy').populate('rejectedBy').then(rData => {
+    Recommendation.find({ isreviewed: true, reviewedBy: req.userData.userId, department: req.userData.department }).populate('acceptedBy').populate('rejectedBy').populate('createdBy').then(rData => {
         res.status(200).json({ message: "Reviewed LOR Requests", data: rData })
     }).catch((err) => {
         console.log(err);
@@ -54,7 +54,7 @@ router.get('/reviewedbyme', checkAuth, checkprivilege.teacher, (req, res) => {
 })
 
 router.get('/acceptedbyme', checkAuth, checkprivilege.hod, (req, res) => {
-    Recommendation.find({ acceptedBy: req.userData.userId }).populate('reviewedBy').then(rData => {
+    Recommendation.find({ acceptedBy: req.userData.userId }).populate('reviewedBy').populate('createdBy').then(rData => {
         res.status(200).json({ message: "Evaluated LOR Requests", data: rData })
     }).catch((err) => {
         console.log(err);
@@ -63,7 +63,7 @@ router.get('/acceptedbyme', checkAuth, checkprivilege.hod, (req, res) => {
 })
 
 router.get('/rejectedbyme', checkAuth, checkprivilege.hod, (req, res) => {
-    Recommendation.find({ rejectedBy: req.userData.userId }).populate('reviewedBy').then(rData => {
+    Recommendation.find({ rejectedBy: req.userData.userId }).populate('reviewedBy').populate('createdBy').then(rData => {
         res.status(200).json({ message: "Evaluated LOR Requests", data: rData })
     }).catch((err) => {
         console.log(err);

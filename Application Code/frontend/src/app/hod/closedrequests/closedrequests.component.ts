@@ -11,6 +11,7 @@ import { map } from "rxjs/operators";
 export class ClosedrequestsComponent implements OnInit {
   acceptedLors: MyLor[];
   rejectedLors: MyLor[];
+  course = ["Bachelors", "Masters"];
   isLoading = true;
   constructor(private lorService: LorService) {}
 
@@ -29,7 +30,8 @@ export class ClosedrequestsComponent implements OnInit {
                 review: data.review,
                 reviewedBy: data.reviewedBy,
                 reviewedOn: data.reviewedOn,
-                acceptedOn: data.acceptedOn
+                acceptedOn: data.acceptedOn,
+                createdBy: data.createdBy
               };
             })
           };
@@ -54,7 +56,8 @@ export class ClosedrequestsComponent implements OnInit {
                 review: data.review,
                 reviewedBy: data.reviewedBy,
                 reviewedOn: data.reviewedOn,
-                acceptedOn: data.acceptedOn
+                acceptedOn: data.acceptedOn,
+                createdBy: data.createdBy
               };
             })
           };

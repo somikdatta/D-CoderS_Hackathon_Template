@@ -1,6 +1,11 @@
 <mat-card *ngFor="let request of reviewedLors">
   <mat-card-title>{{request.title | titlecase}}</mat-card-title>
   <mat-card-content>
+    <h4>Student Details</h4>
+    Name: {{request.createdBy.name.first}} {{request.createdBy.name.last}}<br>
+    Registation Number: {{request.createdBy.uniqueid}}<br>
+    Course: {{course[request.createdBy.course-1]}}<br>
+    Semester: {{request.createdBy.semester}}
     <h4>Review</h4>
     {{request.review}}
     <div *ngIf="request.isaccepted">

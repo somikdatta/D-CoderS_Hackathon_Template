@@ -9,6 +9,7 @@ import { map } from "rxjs/operators";
   styleUrls: ["./finalevaluation.component.css"]
 })
 export class FinalevaluationComponent implements OnInit {
+  course = ["Bachelors", "Masters"];
   rLors: MyLor[];
   constructor(private lorService: LorService) {}
 
@@ -29,7 +30,8 @@ export class FinalevaluationComponent implements OnInit {
                 createdOn: data.createdOn,
                 title: data.title,
                 review: data.review,
-                reviewedBy: data.reviewedBy
+                reviewedBy: data.reviewedBy,
+                createdBy: data.createdBy
               };
             })
           };

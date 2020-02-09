@@ -1,10 +1,16 @@
 <mat-card *ngFor="let request of tbrLors">
   <mat-card-title>{{request.title | titlecase}}</mat-card-title>
+  <mat-card-content>
+    <h4>Student Details</h4>
+    Name: {{request.createdBy.name.first}} {{request.createdBy.name.last}}<br>
+    Registation Number: {{request.createdBy.uniqueid}}<br>
+    Course: {{course[request.createdBy.course-1]}}<br>
+    Semester: {{request.createdBy.semester}}
+  </mat-card-content>
   <mat-card-actions>
     <ng-container *ngFor="let url of request.filesPath; let i=index">
       <a mat-stroked-button color="primary" href="{{url}}" target="_blank">Attachment {{i+1}}</a>
     </ng-container>
-
   </mat-card-actions>
   <mat-card-actions>
     <mat-form-field appearance="outline" color="primary">
@@ -14,7 +20,7 @@
           <mat-option value="{{teacher.id}}">{{teacher.firstname}} {{teacher.lastname}}</mat-option>
         </ng-container>
       </mat-select>
-      <mat-error *ngIf="teacher.invalid">Please select a department</mat-error>
+      <mat-error *ngIf="teacher.invalid">Please select a teacher</mat-error>
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="assignTeacher(request.id,teacher.value)">Assign Teacher for
       Review</button>

@@ -9,6 +9,7 @@ import { MyLor } from "src/app/models/lor";
   styleUrls: ["./toreview.component.css"]
 })
 export class ToreviewComponent implements OnInit {
+  course = ["Bachelors", "Masters"];
   tbrLors: MyLor[];
 
   constructor(private lorService: LorService) {}
@@ -28,7 +29,8 @@ export class ToreviewComponent implements OnInit {
                 id: data._id,
                 filesPath: data.filesPath,
                 createdOn: data.createdOn,
-                title: data.title
+                title: data.title,
+                createdBy: data.createdBy
               };
             })
           };

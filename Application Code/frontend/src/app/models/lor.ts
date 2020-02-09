@@ -4,7 +4,7 @@ export interface MyLor {
   content: string;
   filesPath: string[];
 
-  createdBy: string;
+  createdBy: any;
   createdOn: string;
 
   reviewedBy: any;

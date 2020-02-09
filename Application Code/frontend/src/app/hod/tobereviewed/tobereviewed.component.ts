@@ -12,6 +12,7 @@ import { Teacher } from "src/app/models/teacher";
 export class TobereviewedComponent implements OnInit {
   tbrLors: MyLor[];
   teachers: Teacher[];
+  course = ["Bachelors", "Masters"];
 
   constructor(private lorService: LorService) {}
 
@@ -50,7 +51,8 @@ export class TobereviewedComponent implements OnInit {
                 id: data._id,
                 filesPath: data.filesPath,
                 createdOn: data.createdOn,
-                title: data.title
+                title: data.title,
+                createdBy: data.createdBy
               };
             })
           };

@@ -1,6 +1,11 @@
 <mat-card *ngFor="let request of tbrLors">
   <mat-card-title>{{request.title | titlecase}}</mat-card-title>
   <mat-card-content>
+    <h4>Student Details</h4>
+    Name: {{request.createdBy.name.first}} {{request.createdBy.name.last}}<br>
+    Registation Number: {{request.createdBy.uniqueid}}<br>
+    Course: {{course[request.createdBy.course-1]}}<br>
+    Semester: {{request.createdBy.semester}}
     <mat-form-field appearance="outline" color="primary">
       <mat-label>Review</mat-label>
       <textarea matInput placeholder="Review" type="text" name="review" required #review="ngModel" ngModel

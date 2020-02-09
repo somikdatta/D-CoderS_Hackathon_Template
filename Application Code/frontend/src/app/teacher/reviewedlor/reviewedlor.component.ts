@@ -10,6 +10,7 @@ import { map } from "rxjs/operators";
 })
 export class ReviewedlorComponent implements OnInit {
   isLoading = true;
+  course = ["Bachelors", "Masters"];
   reviewedLors: MyLor[];
   constructor(private lorService: LorService) {}
 
@@ -33,7 +34,8 @@ export class ReviewedlorComponent implements OnInit {
                 rejectedOn: data.rejectedOn,
                 rejectedBy: data.rejectedBy,
                 isaccepted: data.isaccepted,
-                isrejected: data.isrejected
+                isrejected: data.isrejected,
+                createdBy: data.createdBy
               };
             })
           };
