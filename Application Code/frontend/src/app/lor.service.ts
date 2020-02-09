@@ -9,6 +9,8 @@ export class LorService {
   NEW_LOR_URL = environment.apiEndPoint + "recommendation/newlor";
   GET_OWN_LOR_URL = environment.apiEndPoint + "recommendation/mylors";
   DELETE_LOR_URL = environment.apiEndPoint + "recommendation/deletelor";
+  TOBEREVIEWED_LOR_URL =
+    environment.apiEndPoint + "recommendation/tobereviewed";
 
   constructor(private http: HttpClient) {}
 
@@ -30,5 +32,9 @@ export class LorService {
   deleteLor(id: string) {
     const URL = this.DELETE_LOR_URL + `/${id}`;
     return this.http.delete(URL);
+  }
+
+  getToBeReviewed() {
+    return this.http.get(this.TOBEREVIEWED_LOR_URL);
   }
 }

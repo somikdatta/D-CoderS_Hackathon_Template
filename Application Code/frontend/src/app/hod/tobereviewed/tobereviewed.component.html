@@ -1,1 +1,9 @@
-<p>tobereviewed works!</p>
+<mat-card *ngFor="let request of tbrLors">
+  <mat-card-title>{{request.title | titlecase}}</mat-card-title>
+  <mat-card-actions>
+    <ng-container *ngFor="let url of request.filesPath; let i=index">
+      <a mat-stroked-button color="primary" href="{{url}}" target="_blank">Attachment {{i+1}}</a>
+    </ng-container>
+    <button mat-stroked-button color="primary">Assign Teacher</button>
+  </mat-card-actions>
+</mat-card>
