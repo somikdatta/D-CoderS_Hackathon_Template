@@ -7,7 +7,7 @@ const extractFile = require('../middleware/file');
 const router = express.Router();
 
 router.get("/mylors", checkAuth, checkprivilege.student, (req, res) => {
-    Recommendation.find({ createdBy: req.userData.userId }).then((lorData) => {
+    Recommendation.find({ createdBy: req.userData.userId }).populate('reviewedBy').populate('acceptedBy').populate('rejectedBy').then((lorData) => {
         res.status(200).json({ message: "Your LOR Requests", data: lorData })
     }).catch((err) => {
         console.log(err);
@@ -29,6 +29,15 @@ router.get('/tobereviewed', checkAuth, checkprivilege.hod, (req, res) => {
 router.get('/toreview', checkAuth, checkprivilege.teacher, (req, res) => {
     Recommendation.find({ isassigned: true, isreviewed: false, department: req.userData.department, assignedTo: req.userData.userId }).then(tbrData => {
         res.status(200).json({ message: "LOR Requests to be reviewed", data: tbrData })
+    }).catch((err) => {
+        console.log(err);
+        res.status(400).json({ message: "Cannot fetch your LOR Requests" });
+    })
+})
+
+router.get('/reviewed', checkAuth, checkprivilege.hod, (req, res) => {
+    Recommendation.find({ isreviewed: true, department: req.userData.department }).populate('reviewedBy').then(rData => {
+        res.status(200).json({ message: "Reviewed LOR Requests", data: rData })
     }).catch((err) => {
         console.log(err);
         res.status(400).json({ message: "Cannot fetch your LOR Requests" });
