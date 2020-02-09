@@ -7,15 +7,19 @@ export interface MyLor {
   createdBy: string;
   createdOn: string;
 
-  reviewedBy: string;
+  reviewedBy: any;
   isreviewed: string;
   reviewedOn: string;
 
-  acceptedBy: string;
+  acceptedBy: any;
   isaccepted: string;
   acceptedOn: string;
 
-  rejectedBy: string;
+  rejectedBy: any;
   isrejected: string;
   rejectedOn: string;
+
+  review: string;
+  isassigned: string;
+  assignedTo: string;
 }

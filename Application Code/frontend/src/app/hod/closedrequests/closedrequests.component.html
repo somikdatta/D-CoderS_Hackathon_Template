@@ -1,1 +1,39 @@
-<p>closedrequests works!</p>
+<mat-spinner diameter="35" color="primary" *ngIf="isLoading"></mat-spinner>
+<div class="container" *ngIf="!isLoading">
+  <h3 *ngIf="acceptedLors.length>0">Accepted LORs</h3>
+  <mat-card *ngFor="let request of acceptedLors">
+    <mat-card-title>{{request.title | titlecase}}</mat-card-title>
+    <mat-card-content>
+      <h4>Review</h4>
+      {{request.review}}
+      <h4>Reviewed By</h4>
+      {{request.reviewedBy.name.first}} {{request.reviewedBy.name.last}} bearing Employee ID
+      {{request.reviewedBy.uniqueid}}
+    </mat-card-content>
+    <mat-card-actions>
+      <ng-container *ngFor="let url of request.filesPath; let i=index">
+        <a mat-stroked-button color="primary" href="{{url}}" target="_blank">Attachment {{i+1}}</a>
+      </ng-container>
+    </mat-card-actions>
+  </mat-card>
+
+  <h3 *ngIf="rejectedLors.length>0">Rejected LORs</h3>
+  <mat-card *ngFor="let request of rejectedLors">
+    <mat-card-title>{{request.title | titlecase}}</mat-card-title>
+    <mat-card-content>
+      <h4>Review</h4>
+      {{request.review}}
+      <h4>Reviewed By</h4>
+      {{request.reviewedBy.name.first}} {{request.reviewedBy.name.last}} bearing Employee ID
+      {{request.reviewedBy.uniqueid}}
+      <h4>Status</h4>
+      <div *ngIf="request.isaccepted">LOR was accepted</div>
+      <div *ngIf="request.isrejected">LOR was rejected</div>
+    </mat-card-content>
+    <mat-card-actions>
+      <ng-container *ngFor="let url of request.filesPath; let i=index">
+        <a mat-stroked-button color="primary" href="{{url}}" target="_blank">Attachment {{i+1}}</a>
+      </ng-container>
+    </mat-card-actions>
+  </mat-card>
+</div>

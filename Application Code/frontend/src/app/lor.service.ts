@@ -12,12 +12,23 @@ export class LorService {
   private TOBEREVIEWED_LOR_URL =
     environment.apiEndPoint + "recommendation/tobereviewed";
   private TEACHERS_URL = environment.apiEndPoint + "user/teachers";
+  private IAM_URL = environment.apiEndPoint + "user/iam";
   private ASSIGN_TEACHER_URL =
     environment.apiEndPoint + "recommendation/assignteacher";
   private TO_REVIEW_LOR_URL =
     environment.apiEndPoint + "recommendation/toreview";
   private SUBMIT_REVIEW_URL =
     environment.apiEndPoint + "recommendation/submitreview";
+  private REVIEWED_LOR_URL =
+    environment.apiEndPoint + "recommendation/reviewed";
+  private ACCEPT_LOR_URL = environment.apiEndPoint + "recommendation/acceptlor";
+  private REJECT_LOR_URL = environment.apiEndPoint + "recommendation/rejectlor";
+  private ACCEPTED_BY_ME =
+    environment.apiEndPoint + "recommendation/acceptedbyme";
+  private REJECTED_BY_ME =
+    environment.apiEndPoint + "recommendation/rejectedbyme";
+  private REVIEWED_BY_ME =
+    environment.apiEndPoint + "recommendation/reviewedbyme";
 
   constructor(private http: HttpClient) {}
 
@@ -61,5 +72,34 @@ export class LorService {
   submitReview(id: string, review: string) {
     const URL = this.SUBMIT_REVIEW_URL + `/${id}`;
     return this.http.patch(URL, { review: review });
+  }
+
+  getReviewed() {
+    return this.http.get(this.REVIEWED_LOR_URL);
+  }
+
+  iAm(id: string) {
+    const URL = this.IAM_URL + `/${id}`;
+    return this.http.get(URL);
+  }
+
+  acceptLor(id: string) {
+    const URL = this.ACCEPT_LOR_URL + `/${id}`;
+    return this.http.patch(URL, { payload: "dummy" });
+  }
+
+  rejectLor(id: string) {
+    const URL = this.REJECT_LOR_URL + `/${id}`;
+    return this.http.patch(URL, { payload: "dummy" });
+  }
+
+  acceptedByMe() {
+    return this.http.get(this.ACCEPTED_BY_ME);
+  }
+  rejectedByMe() {
+    return this.http.get(this.REJECTED_BY_ME);
+  }
+  reviewedByMe() {
+    return this.http.get(this.REVIEWED_BY_ME);
   }
 }

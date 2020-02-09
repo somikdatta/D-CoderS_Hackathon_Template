@@ -1,0 +1,51 @@
+.container {
+  width: 50%;
+  margin: 1rem auto;
+}
+
+mat-card {
+  width: 100%;
+}
+
+mat-spinner {
+  margin: 0 auto;
+}
+
+h3 {
+  margin: 0 auto 1rem auto;
+}
+
+h4 {
+  margin: 0.5rem auto 0 auto;
+}
+
+@media screen and (max-width: 996px) {
+  .container {
+    width: 60%;
+  }
+}
+
+
+@media screen and (max-width: 831px) {
+  .container {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 831px) {
+  .container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 616px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 547px) {
+  .container {
+    width: 100%;
+  }
+}

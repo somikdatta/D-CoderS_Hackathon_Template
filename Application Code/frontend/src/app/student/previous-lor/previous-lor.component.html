@@ -1,27 +1,35 @@
-<mat-card *ngFor="let request of myLors">
-  <mat-card-title>{{request.title | titlecase}}</mat-card-title>
-  <mat-card-content>
-    <div>
-      <mat-icon color="primary">check_circle_outline</mat-icon>
-      Your request has been processed on {{request.createdOn | date}}.
-    </div>
-    <div *ngIf="request.isreviewed">
-      <mat-icon color="primary">check_circle_outline</mat-icon>
-      Your request has been reviewed on {{request.reviewedOn | date}} by {{request.reviewedBy}}.
-    </div>
-    <div *ngIf="request.isaccepted">
-      <mat-icon color="primary">check_circle_outline</mat-icon>
-      Your request has been accepted on {{request.acceptedOn | date}} by {{request.acceptedBy}}.
-    </div>
-    <div *ngIf="request.isrejected">
-      <mat-icon color="accent">cancel</mat-icon>
-      Your request has been rejected on {{request.rejectedOn | date}} by {{request.rejectedBy}}.
-    </div>
-  </mat-card-content>
-  <mat-card-actions>
-    <ng-container *ngFor="let url of request.filesPath; let i=index">
-      <a mat-stroked-button color="primary" href="{{url}}" target="_blank">Attachment {{i+1}}</a>
-    </ng-container>
-    <button mat-stroked-button color="warn" (click)="deleteLor(request.id)">Delete LOR Request</button>
-  </mat-card-actions>
-</mat-card>
+<<ng-container *ngIf="!isLoading">
+
+  <mat-card *ngFor="let request of myLors">
+    <mat-card-title>{{request.title | titlecase}}</mat-card-title>
+    <mat-card-content>
+      <div>
+        <mat-icon color="primary">check_circle_outline</mat-icon>
+        Your request has been processed on {{request.createdOn | date}}.
+      </div>
+      <div *ngIf="request.isreviewed">
+        <mat-icon color="primary">check_circle_outline</mat-icon>
+        Your request has been reviewed on {{request.reviewedOn | date}} by {{request.reviewedBy.name.first}}
+        {{request.reviewedBy.name.last}}.
+      </div>
+      <div *ngIf="request.isaccepted">
+        <mat-icon color="primary">check_circle_outline</mat-icon>
+        Your request has been accepted on {{request.acceptedOn | date}} by {{request.acceptedBy.name.first}}
+        {{request.acceptedBy.name.last}}.
+      </div>
+      <div *ngIf="request.isrejected">
+        <mat-icon color="accent">cancel</mat-icon>
+        Your request has been rejected on {{request.rejectedOn | date}} by {{request.rejectedBy.name.first}}
+        {{request.rejectedBy.name.last}}.
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <ng-container *ngFor="let url of request.filesPath; let i=index">
+        <a mat-stroked-button color="primary" href="{{url}}" target="_blank">Attachment {{i+1}}</a>
+      </ng-container>
+      <button mat-stroked-button color="warn" (click)="deleteLor(request.id)"
+        *ngIf="!request.isaccepted && !request.isrejected">Delete LOR Request</button>
+    </mat-card-actions>
+  </mat-card>
+
+  </ng-container>

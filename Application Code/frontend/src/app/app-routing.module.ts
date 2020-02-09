@@ -13,7 +13,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AuthGuard } from "./auth/auth.guard";
 
 const routes: Routes = [
-  { path: "", redirectTo: "signup", pathMatch: "full" },
+  { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "signup", component: SignupComponent, canActivate: [ReverseGuard] },
   { path: "login", component: LoginComponent, canActivate: [ReverseGuard] },
   {

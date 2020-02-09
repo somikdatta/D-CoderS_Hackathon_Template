@@ -10,6 +10,7 @@ import { MyLor } from "src/app/models/lor";
 })
 export class PreviousLorComponent implements OnInit {
   myLors: MyLor[];
+  isLoading = true;
   constructor(private lorService: LorService) {}
 
   ngOnInit() {
@@ -24,8 +25,14 @@ export class PreviousLorComponent implements OnInit {
                 filesPath: data.filesPath,
                 createdOn: data.createdOn,
                 title: data.title,
+                isaccepted: data.isaccepted,
                 isreviewed: data.isreviewed,
-                isaccepted: data.isaccepted
+                reviewedBy: data.reviewedBy,
+                acceptedBy: data.acceptedBy,
+                reviewedOn: data.reviewedOn,
+                acceptedOn: data.acceptedOn,
+                rejectedBy: data.rejectedBy,
+                rejectedOn: data.rejectedOn
               };
             })
           };
@@ -33,6 +40,8 @@ export class PreviousLorComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.myLors = res.data;
+        console.log(this.myLors);
+        this.isLoading = false;
       });
   }
   deleteLor(id: string) {
@@ -48,7 +57,13 @@ export class PreviousLorComponent implements OnInit {
                 createdOn: data.createdOn,
                 title: data.title,
                 isreviewed: data.isreviewed,
-                isaccepted: data.isaccepted
+                isaccepted: data.isaccepted,
+                reviewedBy: data.reviewedBy,
+                acceptedBy: data.acceptedBy,
+                reviewedOn: data.reviewedOn,
+                acceptedOn: data.acceptedOn,
+                rejectedBy: data.rejectedBy,
+                rejectedOn: data.rejectedOn
               };
             })
           };

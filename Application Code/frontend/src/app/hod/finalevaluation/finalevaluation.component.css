@@ -1,0 +1,43 @@
+mat-card {
+  width: 50%;
+  margin: 1rem auto;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+h4 {
+  margin: 0.5rem auto 0 auto;
+}
+
+@media screen and (max-width: 996px) {
+  mat-card {
+    width: 60%;
+  }
+}
+
+
+@media screen and (max-width: 831px) {
+  mat-card {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 831px) {
+  mat-card {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 616px) {
+  mat-card {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 547px) {
+  mat-card {
+    width: 100%;
+  }
+}

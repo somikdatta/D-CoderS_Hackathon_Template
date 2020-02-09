@@ -1,1 +1,19 @@
-<p>finalevaluation works!</p>
+<mat-card *ngFor="let request of rLors">
+  <mat-card-title>{{request.title | titlecase}}</mat-card-title>
+  <mat-card-content>
+    <h4>Review</h4>
+    {{request.review}}
+    <h4>Reviewed By</h4>
+    {{request.reviewedBy.name.first}} {{request.reviewedBy.name.last}} bearing Employee ID
+    {{request.reviewedBy.uniqueid}}
+  </mat-card-content>
+  <mat-card-actions>
+    <ng-container *ngFor="let url of request.filesPath; let i=index">
+      <a mat-stroked-button color="primary" href="{{url}}" target="_blank">Attachment {{i+1}}</a>
+    </ng-container>
+  </mat-card-actions>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="accept(request.id)">Accept LOR</button>
+    <button mat-stroked-button color="warn" (click)="reject(request.id)">Reject LOR</button>
+  </mat-card-actions>
+</mat-card>
