@@ -17,7 +17,7 @@ A brief description of
 
 #### Architecture Diagram
 
-![Flow Diagram](https://imgur.com/a/duuc2hr)
+![Flow Diagram](https://i.imgur.com/5LEL5dT.png)
 
 #### Technical Description
 
