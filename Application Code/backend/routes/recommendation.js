@@ -35,6 +35,16 @@ router.get('/toreview', checkAuth, checkprivilege.teacher, (req, res) => {
     })
 })
 
+router.patch('/submitreview/:id', checkAuth, checkprivilege.teacher, (req, res) => {
+    const id = req.params.id;
+    Recommendation.updateOne({ _id: id }, { $set: { isreviewed: true, reviewedBy: req.userData.userId, review: req.body.review } }).then(() => {
+        return res.status(200).json({ message: "Review Submitted successfully" });
+    }).catch(err => {
+        console.log(err);
+        return res.status(401).json({ message: "Cannot submit review" });
+    })
+})
+
 router.patch('/assignteacher/:id', checkAuth, checkprivilege.hod, (req, res) => {
     const id = req.params.id;
     Recommendation.updateOne({ _id: id }, { $set: { assignedTo: req.body.teacher, isassigned: true } }).then(() => {
