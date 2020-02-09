@@ -43,18 +43,30 @@ export class AuthService {
     return this.userId;
   }
 
-  // isAdmin() {
-  //   if (this.authorization < 1) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
-  // isModerator() {
-  //   if (this.authorization < 2) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
+  isHod() {
+    if (this.authorization == 0) {
+      return true;
+    }
+    return false;
+  }
+  isTeacher() {
+    if (this.authorization == 1) {
+      return true;
+    }
+    return false;
+  }
+
+  isStudent() {
+    if (this.authorization == 2) {
+      return true;
+    }
+    return false;
+  }
+
+  getAuthorization() {
+    return this.authorization;
+  }
+
   getName() {
     return this.firstname + " " + this.lastname;
   }
@@ -120,7 +132,7 @@ export class AuthService {
               this.firstname,
               this.lastname
             );
-            this.router.navigate(["/"]);
+            this.router.navigate(["/dashboard"]);
           }
         },
         err => {

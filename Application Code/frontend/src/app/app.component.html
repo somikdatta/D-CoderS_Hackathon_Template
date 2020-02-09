@@ -1,3 +1,6 @@
 <!-- <a mat-button [routerLink]="['/signup']">Signup</a> -->
-<mat-toolbar color="primary">Letter of Recommemdation Web App</mat-toolbar>
+<mat-toolbar color="primary">
+  <span>Letter of Recommemdation Web App</span>
+  <button mat-button (click)="onLogout()" *ngIf="isAuthenticated">Logout</button>
+</mat-toolbar>
 <router-outlet></router-outlet>

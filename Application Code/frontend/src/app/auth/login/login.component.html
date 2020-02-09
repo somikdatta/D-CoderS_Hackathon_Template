@@ -6,8 +6,8 @@
   <form #loginForm="ngForm" class="flex flex-column" (submit)="onLogin(loginForm)">
     <div>
       <mat-form-field appearance="outline" color="accent">
-        <mat-label>Employee ID</mat-label>
-        <input matInput placeholder="Employee ID" type="number" name="uniqueid" required #uniqueid="ngModel" ngModel>
+        <mat-label>ID</mat-label>
+        <input matInput placeholder="ID" type="number" name="uniqueid" required #uniqueid="ngModel" ngModel>
         <mat-error *ngIf="uniqueid.invalid">Please enter a valid unqiue ID</mat-error>
       </mat-form-field>
     </div>

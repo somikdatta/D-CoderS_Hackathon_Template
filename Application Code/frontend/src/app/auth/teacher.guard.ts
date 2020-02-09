@@ -1,9 +1,18 @@
-import { CanActivate, Router } from "@angular/router";
 import { Injectable } from "@angular/core";
+import {
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  UrlTree,
+  Router
+} from "@angular/router";
+import { Observable } from "rxjs";
 import { AuthService } from "./auth.service";
 
-@Injectable({ providedIn: "root" })
-export class ReverseGuard implements CanActivate {
+@Injectable({
+  providedIn: "root"
+})
+export class TeacherGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
@@ -14,10 +23,10 @@ export class ReverseGuard implements CanActivate {
     | import("@angular/router").UrlTree
     | import("rxjs").Observable<boolean | import("@angular/router").UrlTree>
     | Promise<boolean | import("@angular/router").UrlTree> {
-    const isAuthenticated = this.authService.getIsAuth();
-    if (isAuthenticated) {
-      this.router.navigate(["/student"]);
+    const isTeacher = this.authService.isTeacher();
+    if (!isTeacher) {
+      this.router.navigate(["/dashboard"]);
     }
-    return true;
+    return isTeacher;
   }
 }

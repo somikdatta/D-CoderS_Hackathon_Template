@@ -21,7 +21,12 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatDialogModule } from "@angular/material/dialog";
 import { ErrorInterceptor } from "./error-interceptor";
-import { LoginComponent } from './auth/login/login.component';
+import { LoginComponent } from "./auth/login/login.component";
+import { HodComponent } from "./hod/hod.component";
+import { StudentComponent } from "./student/student.component";
+import { TeacherComponent } from "./teacher/teacher.component";
+import { AuthInterceptor } from "./auth/auth.interceptor";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,11 @@ import { LoginComponent } from './auth/login/login.component';
     TeacherSignupComponent,
     HodSignupComponent,
     ErrorComponent,
-    LoginComponent
+    LoginComponent,
+    HodComponent,
+    StudentComponent,
+    TeacherComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +57,8 @@ import { LoginComponent } from './auth/login/login.component';
     MatDialogModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
   entryComponents: [ErrorComponent]
