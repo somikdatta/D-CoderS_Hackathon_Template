@@ -5,7 +5,8 @@
 Problem: Getting a letter of recommendation can be tedious work for both the student and the teachers.
 Automation of this process can make life easier for both the students and teachers.
 
-Solution: Online web portal for requesting and receiving a letter of recommendation
+Solution: Online web portal for requesting and receiving a letter of recommendation. The student can track the progress of the request from their dashboard.
+
 
 ### Solution Description
 
