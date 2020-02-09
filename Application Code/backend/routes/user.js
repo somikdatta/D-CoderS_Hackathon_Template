@@ -11,19 +11,6 @@ router.get('/', (req, res, next) => {
     res.send('<p>Signup:</p><ul><li>First Name: firstname</li><li>Last Name: lastname</li><li>uniqueid: uniqueid</li><li>Password: password</li><li>Course: course</li><li>Department: department</li><li>Semester: semester</li><li>Section: section</li></ul><p>Login</p><ul><li>Email: email</li><li>Password: password</li></ul>');
 })
 
-// router.get("/iam", checkAuth, (req, res) => {
-//     User.findOne({ _id: req.userData.userId }).select({ name: 1 }).select({ career: 1 }).select({ email: 1 })
-//         .then((userData) => {
-//             return res.status(200).json({
-//                 data: userData
-//             })
-//         })
-//         .catch(() => {
-//             res.status(401).json({
-//                 message: "User not found"
-//             })
-//         })
-// })
 
 router.get('/teachers', checkAuth, checkprivilege.hod, (req, res) => {
     User.find({ department: req.userData.department, authorization: 1 }).select({ uniqueid: 1 }).select({ name: 1 }).then((userData) => {
