@@ -35,6 +35,12 @@ Database: MongoDb
 4. Run the backend with the command "npm start" or "nodemon server.js"
 5. Run the frontend with the command "ng serve -o"
 
+#### Available User Accounts
+
+1. Student - 201700062 : P@ssw0rd
+2. Teacher - 3000 : P@ssw0rd
+3. HOD - 4200 : P@ssw0rd
+
 ### Team Members
 
 1. Somik Datta : developersomik@gmail.com (backend/frontend)
