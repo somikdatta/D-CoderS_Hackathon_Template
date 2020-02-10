@@ -3,6 +3,8 @@ import { LorService } from "src/app/lor.service";
 import { MyLor } from "src/app/models/lor";
 import { map } from "rxjs/operators";
 import { Teacher } from "src/app/models/teacher";
+import { MatDialog } from "@angular/material";
+import { ErrorComponent } from "src/app/error/error.component";
 
 @Component({
   selector: "app-tobereviewed",
@@ -14,7 +16,7 @@ export class TobereviewedComponent implements OnInit {
   teachers: Teacher[];
   course = ["Bachelors", "Masters"];
 
-  constructor(private lorService: LorService) {}
+  constructor(private lorService: LorService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.getToBeReviewed();
@@ -68,6 +70,9 @@ export class TobereviewedComponent implements OnInit {
       return;
     }
     this.lorService.assignTeacher(id, teacher).subscribe(res => {
+      this.dialog.open(ErrorComponent, {
+        data: { message: "Teacher Assigned" }
+      });
       this.getToBeReviewed();
     });
   }
