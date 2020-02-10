@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { LorService } from "src/app/lor.service";
 import { map } from "rxjs/operators";
 import { MyLor } from "src/app/models/lor";
+import { MatDialog } from "@angular/material";
+import { ErrorComponent } from "src/app/error/error.component";
 
 @Component({
   selector: "app-toreview",
@@ -12,7 +14,7 @@ export class ToreviewComponent implements OnInit {
   course = ["Bachelors", "Masters"];
   tbrLors: MyLor[];
 
-  constructor(private lorService: LorService) {}
+  constructor(private lorService: LorService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.getToReview();
@@ -43,6 +45,9 @@ export class ToreviewComponent implements OnInit {
 
   submitReview(id: string, review: string) {
     this.lorService.submitReview(id, review).subscribe(res => {
+      this.dialog.open(ErrorComponent, {
+        data: { message: "Reviewed Successfully" }
+      });
       this.getToReview();
     });
   }
