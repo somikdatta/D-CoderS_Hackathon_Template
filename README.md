@@ -1,4 +1,4 @@
-# 58 - Letter of Recommendation Web App
+## 58 - Letter of Recommendation Web App
 
 ### Project Overview
 
